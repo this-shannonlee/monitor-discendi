@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Goals{% endblock %}</h1>
+
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for goal in goals %}
+
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ goal['title'] }}</h5>
+                    <p class="card-text">{{ goal['synopsis'] }}.</p>
+                    <time datetime="{{ goal['created'] }}">{{ goal['created'] }}</time>
+                </div>
+            </div>
+        </div>
+
+        <!-- {% if not loop.last %}
+        <hr>
+        {% endif %} -->
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
