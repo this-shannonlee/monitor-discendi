@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}{{ goal['title'] }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="m-3">
+    {{ goal['synopsis'] }}
+</div>
+
+<div>
+    <ul class="list-group list-group-flush ">
+        <li class="list-group-item">
+            <div class="row d-flex">
+                <div class="col-3">Link</div>
+                <div class="col">
+                    <a href="{{ goal['url_address'] }}">
+                        {{ goal['url_address'] }}
+                    </a>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row d-flex">
+                <div class="col-3">Focus Level</div>
+                <div class="col">{{ goal['focus_level'] }}</div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row d-flex">
+                <div class="col-3">Due Date</div>
+                <div class="col">{{ goal['due_date'] }}</div>
+            </div>
+
+        </li>
+        <li class="list-group-item">
+            <div class="row d-flex">
+                <div class="col-3">Completed</div>
+                <div class="col">{% if goal['is_complete'] %} True {% else %} False {% endif %}</div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row d-flex">
+                <div class="col-3">Notes</div>
+                <div class="col">{{ goal['notes'] }}</div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row d-flex">
+                <div class="col-3">Created</div>
+                <div class="col">{{ goal['created'] }}</div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<section class="mt-5 mb-3">
+    <h3>Objectives</h3>
+    <hr class="mb-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for objective in objectives %}
+
+
+        <div class="col">
+            <div class="card p-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ objective['title'] }}</h5>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

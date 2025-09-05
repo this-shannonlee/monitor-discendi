@@ -15,15 +15,31 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ goal['title'] }}</h5>
+                    <hr>
+                    <div class="mb-2">
+                        {% if goal['is_complete'] %}
+                        <span class="badge text-bg-success">Completed</span>
+                        {% else %}
+                        <span class="badge text-bg-warning text-dark">In Progress</span>
+                        {% endif %}
+                        <span class="badge text-bg-info text-dark">Focus Level: {{ goal['focus_level'] }}</span>
+                        <span class="badge text-bg-secondary">Due: {{ goal['due_date'] }}</span>
+                    </div>
                     <p class="card-text">{{ goal['synopsis'] }}.</p>
-                    <time datetime="{{ goal['created'] }}">{{ goal['created'] }}</time>
+                    <p class="card-text">
+                        Created:
+                        <time datetime="{{ goal['created'] }}">{{ goal['created'] }}</time>
+                    </p>
+                    <hr>
+                    <div>
+                        <a href="{{ url_for('goal.read', id=goal['id']) }}" class="btn btn-sm btn-primary">View Goal</a>
+                        <a href="{{ url_for('goal.update', id=goal['id']) }}" class="btn btn-sm btn-secondary">Edit
+                            Goal</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- {% if not loop.last %}
-        <hr>
-        {% endif %} -->
         {% endfor %}
     </div>
 </section>
